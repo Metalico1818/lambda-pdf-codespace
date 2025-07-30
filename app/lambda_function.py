@@ -30,7 +30,7 @@ def lambda_handler(event, context):
         img.save(tmp_img_path, "PNG")
 
         s3_key = f"pdf-pages/{record_id}/page_{i+1}.png"
-        s3.upload_file(tmp_img_path, BUCKET, s3_key, ExtraArgs={'ACL': 'public-read'})
+        s3.upload_file(tmp_img_path, BUCKET, s3_key)
 
         public_url = f"https://{BUCKET}.s3.amazonaws.com/{s3_key}"
         image_urls.append(public_url)
